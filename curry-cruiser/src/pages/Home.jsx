@@ -8,6 +8,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import background1 from '../assets/background1.jpg';
+import logo from '../assets/logo.png';
 
 const Container = styled.div`
 padding-top: 10vh;
@@ -21,16 +22,25 @@ padding-top: 10vh;
     align-items: center;
 `;
 
+// title is hidden
 const Title = styled.h1`
     font-size: 5rem;
     color: #fff;
     text-align: center;
+    display: none;
+
 `;
 
 const Subtitle = styled.h2`
     font-size: 2rem;
     color: #fff;
     text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+        padding:35px;
+    }
+
 `;
 
 const Button = styled.button`
@@ -50,14 +60,25 @@ const Button = styled.button`
     }
 `;
 
+const TitleLogoImg = styled.img`
+    width: 50%;
+    // height: 10rem;
+
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+`;
+
+
 
 
 const Home = () => {
     return (
         <Container>
+            <TitleLogoImg src={logo}></TitleLogoImg>
             <Title>Curry Cruiser</Title>
             <Subtitle>Authentic Indian fast food on the go</Subtitle>
-            <Button>Order Now</Button>
+            {/* <Button>Order Now</Button> */}
         </Container>
 
     );

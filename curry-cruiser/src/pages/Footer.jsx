@@ -12,6 +12,7 @@ const FooterContainer = styled.footer`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    opacity: 0.85;  
     `;
 
 

@@ -10,7 +10,7 @@ import styled from "styled-components";
 import background1 from "../assets/background5.jpg";
 
 const Container = styled.div`
-padding-top: 10vh;
+padding-top: 11vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,12 +22,13 @@ padding-top: 10vh;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    padding-bottom: 5vh;
 
 `;
 
 const Title = styled.h1`
     font-size: 5rem;
-    color: #000;
+    color: #b50707;
     text-align: center;
 `;
 
@@ -37,6 +38,11 @@ const ContactContainer = styled.div`
     justify-content: center;
     //   align-items: center;
     width: 100vw;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
 `;
 
 const ContactFormContainer = styled.div`
@@ -44,11 +50,16 @@ const ContactFormContainer = styled.div`
     flex: 1;    
     width: 50vw;
     // background-color: blue;
-    color: #fff;
+    color: #b50707;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 768px) {
+        width: 100vw;
+    }
+
 `;
 
 const ContactForm = styled.form`
@@ -59,37 +70,64 @@ const ContactForm = styled.form`
         margin: 1rem;
         padding: 1rem;
         font-size: 2rem;
-        border: 2px solid #000;
+        font-family: 'Maven Pro', sans-serif;
+        border: 2px solid #b50707;
+        background: transparent;
         border-radius: 15px;
+
+        ::placeholder {
+            color: white;
+            
+        }
+
+        @media (max-width: 768px) {
+            height: 5vh;
+            width: 80vw;
+        }
     }
 
     textarea {
         margin: 1rem;
         padding: 1rem;
-
+        font-family: 'Maven Pro', sans-serif;
         font-size: 2rem;
-        border: 2px solid #000;
+        border: 2px solid #b50707;
         border-radius: 15px;
+        background: transparent;
+
+        ::placeholder {
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            height: 20vh;
+            width: 80vw;
+        }
     }
 
     button {
         margin: 1rem;
         padding: 1rem;
         font-size: 2rem;
-        border: 2px solid #000;
+        opacity: 0.8;
+        color: #b50707;
+        background-color: #fff;
+        border: 2px solid #b50707;
         border-radius: 15px;
         cursor: pointer;
     }
 
     button:hover {
-        background-color: #000;
+        background-color: #b50707;
         color: #fff;
     }
 `;
 
 const ContactInfoContainer = styled.div`
 
-    height: 100vh;
+    // height: 100vh;
+    margin-top: 5rem;
     flex: 1;
     width: 50vw;
     // background-color: red;
@@ -98,25 +136,45 @@ const ContactInfoContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 768px) {
+        width: 100vw;
+    }
 `;
 
 const ContactInfo = styled.div`
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     text-align: center;
+    text-transform: uppercase;
     margin: 1rem;
     cursor: pointer;
     border-radius: 15px;
         padding: 1rem;
-        color: #fff;
+        color: #b50707;
 
     &:hover {
         background-color: #000;
         border-radius: 15px;
         padding: 1rem;
-        color: #fff;
+        color: #b50707;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+        border-radius: 15px;
     }
 `;
+
+const SmallTitle = styled.h1`
+    font-size: 3rem;
+    color: #b50707;
+    font-weight: 500;
+    text-align: center;
+    // margin-top: -2rem;
+`;
+
 
 const Contact = () => {
 
@@ -125,6 +183,7 @@ const Contact = () => {
             {/* <Title>Contact</Title> */}
             <ContactContainer>
                 <ContactFormContainer>
+                    <SmallTitle>Talk to us!</SmallTitle>
                     <ContactForm>
                         <input type="text" placeholder="Name" />
                         <input type="email" placeholder="Email" />
@@ -133,9 +192,10 @@ const Contact = () => {
                     </ContactForm>
                 </ContactFormContainer>
                 <ContactInfoContainer>
+                    <SmallTitle>Contact Info</SmallTitle>
                     <ContactInfo>Phone: 123-456-7890</ContactInfo>
                     <ContactInfo>Email: john.doe@gmail.communities</ContactInfo>
-                    <ContactInfo>Address: 123 Main St, New York, NY 10001</ContactInfo>
+                    <ContactInfo>Address: 1312 Winter Walk Cr, Morrisville</ContactInfo>
                 </ContactInfoContainer>
             </ContactContainer>
         </Container>

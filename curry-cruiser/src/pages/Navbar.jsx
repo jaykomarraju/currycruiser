@@ -1,66 +1,150 @@
-// This is the top of the page NAVBAR
-// It must display the name of the food truck: Curry Cruiser
-// It must have links to the Home, About, Menu, Shop and Contact pages
-// use styled components to style the page
-
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import logo from '../assets/logo.png';
 
-const Container = styled.div`
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    width: 100vw;
-    background-color: #fff;
-    padding: 0 2rem;
+const NavWrapper = styled.nav`
+  background-color: #fff;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
     position: fixed;
-    z-index: 1;
 `;
 
-
-
-const Logo = styled.h1`
-    font-size: 2rem;
-    color: #000;
-    text-align: center;
+const NavLogo = styled(Link)`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
 `;
 
-const Links = styled.div`
+const NavList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+//   margin-top: -1rem;
+  padding: 0;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  transition: transform 0.3s ease-in-out;
+`;
+
+const NavItem = styled.li`
+  margin: 1rem 0;
+`;
+
+const NavLogoImg = styled.img`
+    width: 30%;
+    // height: 10rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 50vw;
-    margin: 0 2rem;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        width: 40%;
+    }
+
+    @media (max-width: 768px) {
+        width: 50%;
+    }
 `;
 
-const LinkItem = styled(Link)`
-    font-size: 1.5rem;
-    color: #000;
-    text-align: center;
-    text-decoration: none;
-    margin: 0 1rem;
+const NavLink = styled(Link)`
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #777;
+  }
+`;
+
+
+const Hamburger = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+
+  &:focus {
+    outline: none;
+  }
+
+  span {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: #333;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    transform-origin: 0.5px;
+
+    &:first-child {
+      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    &:nth-child(2) {
+      opacity: ${({ open }) => open ? '0' : '1'};
+      transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+    }
+
+    &:nth-child(3) {
+      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
+  }
 `;
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
 
-    return (
-        <Container>
-            <LinkItem to="/">
-            <Logo>Curry Cruiser</Logo></LinkItem>
-            <Links>
-                <LinkItem to="/">Home</LinkItem>
-                <LinkItem to="/about">About</LinkItem>
-                <LinkItem to="/menu">Menu</LinkItem>
-                <LinkItem to="/shop">Shop</LinkItem>
-                <LinkItem to="/contact">Contact</LinkItem>
-            </Links>
-        </Container>
-    )
-}
+  return (
+    <NavWrapper>
+        <NavLogo to="/">
+            <NavLogoImg src={logo} alt="logo" />
+        </NavLogo>
+      <Hamburger open={open} onClick={() => setOpen(!open)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </Hamburger>
+      <NavList open={open}>
+        <NavItem>
+          <NavLink to="/" onClick={() => setOpen(false)}>Home</NavLink>
+        </NavItem>
+        <NavItem>
+            <NavLink to="/about" onClick={() => setOpen(false)}>About</NavLink>
+        </NavItem>
+        <NavItem>
+            <NavLink to="/menu" onClick={() => setOpen(false)}>Menu</NavLink>
+        </NavItem>
+        <NavItem>
+            <NavLink to="/shop" onClick={() => setOpen(false)}>Truck</NavLink>
+        </NavItem>
+        <NavItem>
+            <NavLink to="/contact" onClick={() => setOpen(false)}>Contact</NavLink>
+        </NavItem>
+        </NavList>
+    </NavWrapper>
+    );
+};
 
 export default Navbar;
